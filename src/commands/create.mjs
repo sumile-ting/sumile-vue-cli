@@ -1,4 +1,4 @@
-// src/commands/create.js
+// src/commands/create.jsexecaCommandSync
 const download = await import('download-git-repo')
 const ora = await import('ora')
 const fs = await import('fs-extra')
@@ -6,6 +6,7 @@ const chalk = await import('chalk')
 const inquirer = await import('inquirer')
 const handlebars = await import('handlebars')
 let path = await import('path')
+const execa = await import('execa')
 const cwd = process.cwd()
 
 // 检查是否已经存在相同名字工程
@@ -66,6 +67,18 @@ const action = async (projectName, cmdArgs) => {
       //将解析后的结果重写到package.json文件中
       fs.default.writeFileSync(packagePath,packageResult)
       console.log(chalk.default.yellow('初始化模板成功'))
+
+      // 新建工程装包
+      execa.execaCommandSync('npm install', {
+        stdio: 'inherit',
+        cwd: targetDir,
+      })
+
+      spinner.succeed(
+        `项目创建完成 ${chalk.default.yellow(projectName)}\n👉 输入以下命令启动项目:`
+      )
+
+      console.log(chalk.default.yellow(`$ cd ${projectName}\n$ npm run dev\n`))
       
     })
   })

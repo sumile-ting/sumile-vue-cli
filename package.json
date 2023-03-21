@@ -1,6 +1,6 @@
 {
   "name": "sumile-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "我的cli, sumile-cli create project-name生成基于https://github.com/sumile-ting/vue3-admin.git的项目模板",
   "main": "./build/index.mjs",
   "scripts": {
