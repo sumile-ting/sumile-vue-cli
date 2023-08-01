@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-import('./build/index.mjs')
+import('./src/index.js')
